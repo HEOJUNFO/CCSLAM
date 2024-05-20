@@ -103,12 +103,11 @@
     <div id="renderer-cam">
         <canvas id="renderer-video"></canvas>
     </div>
-    <div id="renderer-map"></div>
 </div>
 <script type="module">
     import { Stats } from "./assets/stats.js";
     import { AlvaAR } from './assets/alva_ar.js';
-    import { ARSimpleView, ARSimpleMap } from "./assets/view.js";
+    import { ARSimpleView } from "./assets/view.js";
     import { Video, onFrame } from "./assets/utils.js";
 
     async function main()
@@ -122,14 +121,12 @@
         const alva = await AlvaAR.Initialize( media.width, media.height );
 
         const $cam = document.getElementById( 'renderer-cam' );
-        const $map = document.getElementById( 'renderer-map' );
         const ctx = document.getElementById( 'renderer-video' ).getContext( '2d' );
 
         ctx.canvas.width = media.width;
         ctx.canvas.height = media.height;
 
-        const mapRenderer = new ARSimpleMap( $map, media.width, media.height );
-        const camRenderer = new ARSimpleView( $cam, media.width, media.height, mapRenderer );
+        const camRenderer = new ARSimpleView( $cam, media.width, media.height);
 
         let doFindPlane = false;
 
